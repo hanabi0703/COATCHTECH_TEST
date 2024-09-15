@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('/', [TestController::class, 'index']);
+
+Route::post('/', [TestController::class, 'contactCreate']);
