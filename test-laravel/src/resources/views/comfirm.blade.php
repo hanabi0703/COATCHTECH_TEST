@@ -1,4 +1,9 @@
 @extends('layouts.default')
+
+@section('css')
+  <link rel="stylesheet" href="{{ asset('css/comfirm.css') }}"><style>
+@endsection
+
 <style>
   th {
     background-color: #289ADC;
