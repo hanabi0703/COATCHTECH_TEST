@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="{{ asset('css/confirm.css') }}">
 @endsection
 
-@section('title', 'Confirm')
+@section('title', 'FashonablyLate')
 
 @section('content')
 <div class="confirm__content">
