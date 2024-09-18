@@ -9,9 +9,16 @@
     @yield('css')
 </head>
 <body>
-  <h1 class="title">@yield('title')</h1>
-  <div class="content">
-    @yield('content')
-  </div>
+  <header class="header">
+    <h1 class="title">@yield('title')</h1>
+    <nav class="header-nav">
+            @yield('button')
+    </nav>
+  </header>
+  <main>
+    <div class="content">
+      @yield('content')
+    </div>
+  </main>
 </body>
 </html>

@@ -29,6 +29,7 @@ class TestController extends Controller
         ];
         // Contact::create($form);
         return redirect('/contacts/confirm');
+        // ->未使用
     }
 
     public function confirm(TestRequest $request)
@@ -64,13 +65,14 @@ class TestController extends Controller
         ];
         Contact::create($contact);
         return view('thanks');
+        // ->未使用
     }
 
     public function revise(Request $request) {
         if($request->input('revise') == 'revise') {
             return redirect('/')->withInput();
         }
-        
+
         $contact = $request->only(['category_id', 'first_name', 'last_name', 'gender', 'email', 'tell1','tell2', 'tell3', 'address', 'building', 'detail']);
         Contact::create($contact);
         return view('thanks');

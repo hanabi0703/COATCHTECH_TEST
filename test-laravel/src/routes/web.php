@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\MiddlewareController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +20,15 @@ use App\Http\Controllers\TestController;
 //     return view('welcome');
 // });
 
-Route::get('/', [TestController::class, 'index']);
+// Route::get('/register', [UserController::class, 'register']);
+// Route::post('/register', [UserController::class, 'createUser']);
+
+Route::middleware('auth')->group(function () {
+Route::get('/top', [UserController::class, 'top']);
+});
+
+
+Route::get('/', [UserController::class, 'top']);
 Route::post('/', [TestController::class, 'contactCreate']);
 
 Route::get('/contacts/confirm', [TestController::class, 'confirm']);
