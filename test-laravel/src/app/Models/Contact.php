@@ -11,6 +11,20 @@ class Contact extends Model
 
     protected $fillable = ['category_id', 'first_name', 'last_name', 'gender', 'email', 'address', 'building', 'tell', 'detail'];
 
+    public function scopeKeywordSearch($query, $keyword)
+    {
+    if (!empty($keyword)) {
+        $query->where('first_name', 'like', '%' . $keyword . '%')->orWhere('last_name', 'like', '%' . $keyword . '%')->orWhere('email', 'like', '%' . $keyword . '%');
+    }
+    }
+
+        public function scopeGenderSearch($query, $gender)
+    {
+    if (!empty($gender)) {
+        $query->where('gender', $gender);
+    }
+    }
+
     public function scopeCategorySearch($query, $category_id)
     {
     if (!empty($category_id)) {
@@ -18,10 +32,10 @@ class Contact extends Model
     }
     }
 
-    public function scopeKeywordSearch($query, $keyword)
+    public function scopeUpdateSearch($query, $updated_at)
     {
-    if (!empty($keyword)) {
-        $query->where('first_name', 'like', '%' . $keyword . '%')->orWhere('last_name', 'like', '%' . $keyword . '%')->orWhere('email', 'like', '%' . $keyword . '%');
+    if (!empty($updated_at)) {
+        $query->whereDate('updated_at', $updated_at);
     }
     }
 

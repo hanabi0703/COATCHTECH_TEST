@@ -31,6 +31,8 @@
               echo '男性';
             } else if ($contact['gender'] == '2') {
               echo '女性';
+            } else if ($contact['gender'] == '3') {
+              echo 'その他';
             }
             ?>
           </td>
