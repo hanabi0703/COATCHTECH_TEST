@@ -33,7 +33,7 @@ Route::get('/top', [UserController::class, 'top']);
 Route::get('/admin', [AdminController::class, 'admin']);
 Route::get('/admin/search', [AdminController::class, 'search']);
 
-Route::get('/', [UserController::class, 'top']);
+Route::get('/', [TestController::class, 'index']);
 Route::post('/', [TestController::class, 'contactCreate']);
 
 Route::get('/contacts/confirm', [TestController::class, 'confirm']);
