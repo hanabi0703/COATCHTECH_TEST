@@ -5,8 +5,9 @@
 @endsection
 
 @section('button')
-<a class="header-nav__link" href="/login">login</a>
-
+<nav class="header-nav">
+        <a class="header-nav__link" href="/login">login</a>
+</nav>
 @endsection
 
 @section('title', 'FashonablyLate')

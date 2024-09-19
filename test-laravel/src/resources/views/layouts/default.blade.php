@@ -12,9 +12,7 @@
 <body>
   <header class="header">
     <h1 class="title">@yield('title')</h1>
-    <nav class="header-nav">
-            @yield('button')
-    </nav>
+      @yield('button')
   </header>
   <main>
     <div class="content">

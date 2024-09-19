@@ -10,33 +10,44 @@
 
 @section('title', 'FashionablyLate')
 
+@section('button')
+<nav class="header-nav">
+    <form class="form_logout" action="/logout" method="post">
+        @csrf
+        <button class="header-nav__button">logout</button>
+    </form>
+</nav>
+@endsection
+
 @section('content')
-<div class="confirm__content">
-    <div class="confirm__heading">
+<div class="admin_content">
+    <div class="admin-form__heading">
         <h2>Admin</h2>
     </div>
     <form class="form" action="/admin/search" method="get">
     @csrf
         <div class="search-form__item">
             <input class="search-form__item-input" type="text" name="keyword" value="{{ old('keyword') }}">
-            <select class="search-form__item-select" name="gender">
+            <select class="search-form__item-gender" name="gender">
             <option value="">性別</option>
             <option value="">全て</option>
             <option value="1">男性</option>
             <option value="2">女性</option>
             <option value="3">その他</option>
             </select>
-            <select class="search-form__item-select" name="category_id">
+            <select class="search-form__item-category" name="category_id">
             <option value="">お問合せの種類</option>
             @foreach ($categories as $category)
             <option value="{{ $category['id'] }}">{{ $category['content'] }}</option>
             @endforeach
             </select>
-            <input class="search-form__item-input" type="date" name="updated_at" value="{{ old('updated_at') }}">
+            <input class="search-form__item-date" type="date" name="updated_at" value="{{ old('updated_at') }}">
         </div>
         <div class="search-form__button">
             <button class="search-form__button-submit" type="submit">検索</button>
-            <a class="search-form__button-reset" href="/admin">リセット</a>
+            <div class="search-form__button-reset">
+            <a class="search-form__button-link" href="/admin">リセット</a>
+            </div>
         </div>
     </form>
     <div class="pagination">
@@ -54,7 +65,7 @@
         </tr>
         @foreach ($contacts as $contact)
         <tr class="category-table__row">
-            <td class="category-table__item">{{ $contact['first_name'] }}</td>
+            <td class="category-table__item tr-first">{{ $contact['first_name'] }}</td>
             <td class="category-table__item">{{ $contact['last_name'] }}</td>
             <td class="category-table__item">
                 <?php
@@ -80,76 +91,74 @@
                     } else if ($contact['category_id'] == '5') {
                     echo 'その他';
                     }
-                    ?></td>
-                    <td>
-            <!-- <form class="detail-form">
-                <div class="detail-form__item">
-                </div>
-                <div class="detail-form__button">
-                <button class="detail-form__button-submit" type="submit">詳細</button>
-            </form> -->
+                    ?>
+            </td>
+            <td class="category-table__item tr-last">
                 <button class="form__button js-modal-open">詳細</button>
                 </div>
+            </td>
             <!-- モーダル本体 -->
             <div class="modal js-modal">
-            <div class="modal-container">
-                <!-- モーダルを閉じるボタン -->
-                <div class="modal-close js-modal-close">×</div>
-                <!-- モーダル内部のコンテンツ -->
-                <div class="modal-content">
-                    <div class="detail_group">
-                        <div class="detail_label">
-                            <span>お名前</span>
+                <div class="modal-container">
+                    <!-- モーダルを閉じるボタン -->
+                    <div class="modal-close js-modal-close">×</div>
+                    <!-- モーダル内部のコンテンツ -->
+                    <div class="modal-content">
+                        <div class="modal-content-detail">
+                            <div class="detail_group">
+                                <div class="detail_label">
+                                    <span>お名前</span>
+                                </div>
+                                <div class="detail_content">
+                                    <span>{{ $contact['first_name'] }}</span>
+                                    <span>{{ $contact['last_name'] }}</span></div>
+                            </div>
+                            <div class="detail_group">
+                                <div class="detail_label">
+                                    <span>性別</span>
+                                </div>
+                                <div class="detail_content">{{ $contact['gender'] }}</div>
+                            </div>
+                            <div class="detail_group">
+                                <div class="detail_label">
+                                    <span>メールアドレス</span>
+                                </div>
+                                <div class="detail_content">{{ $contact['email'] }}</div>
+                            </div>
+                            <div class="detail_group">
+                                <div class="detail_label">
+                                    <span>電話番号</span>
+                                </div>
+                                <div class="detail_content">{{ $contact['tell'] }}</div>
+                            </div>
+                            <div class="detail_group">
+                                <div class="detail_label">
+                                    <span>住所</span>
+                                </div>
+                                <div class="detail_content">{{ $contact['address'] }}</div>
+                            </div>
+                            <div class="detail_group">
+                                <div class="detail_label">
+                                    <span>建物名</span>
+                                </div>
+                                <div class="detail_content">{{ $contact['building'] }}</div>
+                            </div>
+                            <div class="detail_group">
+                                <div class="detail_label">
+                                    <span>お問合せの種類</span>
+                                </div>
+                                <div class="detail_content">{{ $contact['category_id'] }}</div>
+                            </div>
+                            <div class="detail_group">
+                                <div class="detail_label">
+                                    <span>お問合せ内容</span>
+                                </div>
+                                <div class="detail_content">{{ $contact['detail'] }}</div>
+                            </div>
                         </div>
-                        <div class="detail_content">{{ $contact['first_name'] }}</div>
-                        <div class="detail_content">{{ $contact['last_name'] }}</div>
-                    </div>
-                    <div class="detail_group">
-                        <div class="detail_label">
-                            <span>性別</span>
-                        </div>
-                        <div class="detail_content">{{ $contact['gender'] }}</div>
-                    </div>
-                    <div class="detail_group">
-                        <div class="detail_label">
-                            <span>メールアドレス</span>
-                        </div>
-                        <div class="detail_content">{{ $contact['email'] }}</div>
-                    </div>
-                    <div class="detail_group">
-                        <div class="detail_label">
-                            <span>電話番号</span>
-                        </div>
-                        <div class="detail_content">{{ $contact['tell'] }}</div>
-                    </div>
-                    <div class="detail_group">
-                        <div class="detail_label">
-                            <span>住所</span>
-                        </div>
-                        <div class="detail_content">{{ $contact['address'] }}</div>
-                    </div>
-                    <div class="detail_group">
-                        <div class="detail_label">
-                            <span>建物名</span>
-                        </div>
-                        <div class="detail_content">{{ $contact['building'] }}</div>
-                    </div>
-                    <div class="detail_group">
-                        <div class="detail_label">
-                            <span>お問合せの種類</span>
-                        </div>
-                        <div class="detail_content">{{ $contact['category_id'] }}</div>
-                    </div>
-                    <div class="detail_group">
-                        <div class="detail_label">
-                            <span>お問合せ内容</span>
-                        </div>
-                        <div class="detail_content">{{ $contact['detail'] }}</div>
                     </div>
                 </div>
             </div>
-            </div>
-            </td>
         </tr>
         @endforeach
         </table>

@@ -1,5 +1,5 @@
 window.addEventListener('load', function () {
-    debugger;
+    // debugger;
     //要素を取得
     const modals = document.querySelectorAll('.js-modal'),
         opens = document.querySelectorAll('.js-modal-open'),

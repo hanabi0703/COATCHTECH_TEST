@@ -23,7 +23,7 @@ use App\Http\Controllers\AdminController;
 // Route::post('/register', [UserController::class, 'createUser']);
 
 Route::middleware('auth')->group(function () {
-Route::get('/top', [UserController::class, 'top']);
+Route::get('/top', [AdminController::class, 'admin']);
 });
 
 Route::get('/admin', [AdminController::class, 'admin']);
