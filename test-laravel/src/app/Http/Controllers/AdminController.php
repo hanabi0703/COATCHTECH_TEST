@@ -22,4 +22,10 @@ public function search(Request $request)
 
   return view('admin', compact('contacts', 'categories'));
 }
+
+    // public function modal()
+    // {
+    //     return view('modal');
+    // }
+
 }
